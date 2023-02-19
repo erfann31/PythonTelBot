@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from telebot.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 
-bot = telebot.TeleBot("5765868981:AAHGXobgUhBhx33-4D8gVSrCU3Y_aQwkpxA")
+bot = telebot.TeleBot("6296288201:AAFwb6LljuhW4U0MZ2T4cLqK0vTESb48ci8")
 
 button_sell = KeyboardButton('🛒 خرید سرویس')
 button_Servises = KeyboardButton('🛍 سرویس های من')
@@ -16,16 +16,17 @@ greet_kb = ReplyKeyboardMarkup(resize_keyboard=True)
 greet_kb.add(button_sell,button_Servises)
 greet_kb.add(button_charge,button_Taarefe,button_prifile)
 greet_kb.add(button_help,button_support)
-cart = []
+
 
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    global cart
-    cart = []
     bot.send_message(message.chat.id, '▪️ کاربر گرامی عضویت شما را به ربات تبریک میگویم ، لطفا یکی از گزینه های زیر را انتخاب نمایید :',
                      reply_markup=greet_kb)
 
+@bot.message_handler(commands=['poo', 'test'])
+def send_welcome(message):
+    bot.send_message(message.chat.id, 'سلام عرفانم ')
 
 inline_btn_1 = InlineKeyboardButton('10 گیگ 2 کاربره', callback_data='button1')
 inline_btn_2 = InlineKeyboardButton('25 گیگ 3 کاربره', callback_data='button2')
@@ -335,7 +336,7 @@ def delete_callback(call):
 
 @bot.callback_query_handler(func=lambda c: c.data == 'button5')
 def delete_callback(call):
-    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.mesFFFsage.message_id)
     bot.send_message(chat_id=call.message.chat.id, text='مرحله دوم؛ لطفا لوکیشن موردنظر خودتون رو انتخاب بفرمایید :',reply_markup=inline_kb9)
 @bot.callback_query_handler(func=lambda c: c.data == 'button25')
 def delete_callback(call):
@@ -412,7 +413,7 @@ def send_text(message):
 💰 موجودی: 0 تومان
 
 👈🏻 پرداخت های موفق: 0 عدد
-👈🏻 کل سرویس ها : 0 عدد
+👈🏻 *کل سرویس ها : 0 عدد*
 🟡 فاکتور های پرداخت نشده : 0 عدد
 
 📞 شماره تلفن : ثبت نشده ❌
@@ -425,20 +426,18 @@ def send_text(message):
         bot.send_message(message.chat.id, "راهنمای اتصال برای کدام سیستم عامل رو میخواهید بدانید ؟",reply_markup=inline_kb4)
    
     elif '📮 پشتیبانی آنلاین' in message.text:
-        keyboard = [[InlineKeyboardButton("مشاهده قوانین", url="https://t.me/Flash_Connection/291")]]
+        keyboard = [[InlineKeyboardButton("مشاهده قوانین", url="https://t.me/erfann31")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         bot.send_message(chat_id=message.chat.id, text="""
         👈🏻 جهت ارتباط به صورت مستقیم (مشکلات سرویس):
-    🆔 @MasoudNadian
+    🆔 @erfann31
 
     🛑 قبل از ارسال پیام به پشتیبانی،  قوانین سرویس دهی را بخوانید.
 
     🗯 سؤال، پیشنهاد، مشکل و یا انتقاد خودرا در قالب یک پیام متنی واحد به طور کامل ارسال کنید :""", reply_markup=reply_markup)
     
     else:
-        text = """```
-This text will be in monospace font.
-```"""
-
+        text = "```This text will be in monospace font.```"
+        bot.send_message(message.chat.id, text, parse_mode='Markdown')
 
 bot.polling(none_stop=True)
