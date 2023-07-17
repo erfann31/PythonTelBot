@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from telebot.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 
-bot = telebot.TeleBot("6296288201:AAFwb6LljuhW4U0MZ2T4cLqK0vTESb48ci8")
+bot = telebot.TeleBot("")
 
 button_sell = KeyboardButton('🛒 خرید سرویس')
 button_Servises = KeyboardButton('🛍 سرویس های من')
